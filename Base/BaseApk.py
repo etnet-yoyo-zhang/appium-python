@@ -61,6 +61,7 @@ class ApkInfo():
         print("match=%s" %match)
         if match is not None:
             return match.group(1)
+
 if __name__ == '__main__':
     pass
     # ApkInfo(r"D:\app\appium\Img\Jianshu-2.3.1.apk").getApkActivity()

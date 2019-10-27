@@ -14,6 +14,8 @@ class HomeTest(ParametrizedTestCase):
                "device": self.devicesName, "caseName": sys._getframe().f_code.co_name}
 
         page = FirstOpenPage(app)
+        print('current activity----...' + app["driver"].current_activity)
+        app["driver"].wait_activity("com.google.android.gms.ads.AdActivity", 10)
         page.operate()
         page.checkPoint()
 

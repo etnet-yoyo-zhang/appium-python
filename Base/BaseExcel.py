@@ -64,7 +64,7 @@ class OperateReport:
 
         _write_center(worksheet, "E3", "脚本语言", self.wd)
 
-        worksheet.merge_range('E4:E6', 'appium1.7+python3', get_format_center(self.wd))
+        worksheet.merge_range('E4:E6', 'appium1.8+python3', get_format_center(self.wd))
         _write_center(worksheet, "A8", '机型', self.wd)
         _write_center(worksheet, "B8", '通过', self.wd)
         _write_center(worksheet, "C8", '失败', self.wd)

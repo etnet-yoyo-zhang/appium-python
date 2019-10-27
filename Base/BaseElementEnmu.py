@@ -39,7 +39,7 @@ class Element(object):
     TOAST = "toast"
 
 
-    RE_CONNECT = 1 # 是否打开失败后再次运行一次用例
+    RE_CONNECT = 0 # 是否打开失败后再次运行一次用例
 
     INFO_FILE = "info.pickle"
     SUM_FILE = "sum.pickle"

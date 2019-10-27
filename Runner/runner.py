@@ -38,9 +38,9 @@ def runnerPool(getDevices):
         _initApp = {}
         _initApp["deviceName"] = getDevices[i]["devices"]
         _initApp["platformVersion"] = getPhoneInfo(devices=_initApp["deviceName"])["release"]
-        _initApp["platformName"] = "android"
+        _initApp["platformName"] = "Android"
         _initApp["port"] = getDevices[i]["port"]
-        _initApp["automationName"] = "uiautomator2"
+        _initApp["automationName"] = "appium"
         _initApp["systemPort"] = getDevices[i]["systemPort"]
 
         _initApp["app"] = getDevices[i]["app"]
@@ -60,7 +60,7 @@ def runnerCaseApp(devices):
     starttime = datetime.now()
     suite = unittest.TestSuite()
     suite.addTest(ParametrizedTestCase.parametrize(HomeTest, param=devices))
-    # suite.addTest(ParametrizedTestCase.parametrize(HomeTest, param=devices)) #加入测试类
+    #suite.addTest(ParametrizedTestCase.parametrize(ScreenTest, param=devices)) #加入测试类
     unittest.TextTestRunner(verbosity=2).run(suite)
     endtime = datetime.now()
     countDate(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), str((endtime - starttime).seconds) + "秒")
@@ -68,8 +68,8 @@ def runnerCaseApp(devices):
 if __name__ == '__main__':
 
     kill_adb()
-
-    devicess = AndroidDebugBridge().attached_devices()
+    
+    devicess = AndroidDebugBridge().attached_devices() # 检测连接上多个设备
     if len(devicess) > 0:
         mk_file()
         l_devices = []
@@ -80,7 +80,7 @@ if __name__ == '__main__':
             app["port"] = str(random.randint(4700, 4900))
             app["bport"] = str(random.randint(4700, 4900))
             app["systemPort"] = str(random.randint(4700, 4900))
-            app["app"] = PATH("../app/com.ximalaya.ting.android.apk") # 测试的app路径,喜马拉雅app
+            app["app"] = PATH("../app/MQ3.3.5_Exported_NoProguard.apk") # 测试的app路径
 
             l_devices.append(app)
 

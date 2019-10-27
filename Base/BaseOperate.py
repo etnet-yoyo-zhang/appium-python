@@ -7,7 +7,7 @@ import appium.common.exceptions
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 
-__author__ = 'shikun'
+__author__ = 'youyou'
 # -*- coding: utf-8 -*-
 from selenium.webdriver.support.ui import WebDriverWait
 import selenium.common.exceptions
@@ -319,3 +319,25 @@ class OperateElement:
 
         }
         return elements[mOperate["find_type"]]()
+
+    # 输入数值
+    def click(self, mOperate):
+        # print(self.driver.page_source)
+        if mOperate["find_type"] == be.find_element_by_id or mOperate["find_type"] == be.find_element_by_xpath:
+            self.elements_by(mOperate).click()
+        elif mOperate.get("find_type") == be.find_elements_by_id:
+            self.elements_by(mOperate)[mOperate["index"]].click()
+        return {"result": True}
+
+    # 输入数值
+    def send_keys(self, mOperate):
+        self.driver.send_keys(mOperate.get("code", 0))
+        return {"result": True}
+
+        # 截图
+    def screenShot(self, screen_save_path):
+
+        print("==开始截图==" % elem)
+        self.driver.get_screenshot_as_file(screen_save_path)
+        return screen_save_path
+
