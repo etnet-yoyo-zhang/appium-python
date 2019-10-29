@@ -101,8 +101,8 @@ class OperateElement:
                 be.SET_VALUE: lambda: self.set_value(operate),
                 be.ADB_TAP: lambda: self.adb_tap(operate, device),
                 be.GET_CONTENT_DESC: lambda: self.get_content_desc(operate),
-                be.PRESS_KEY_CODE: lambda: self.press_keycode(operate)
-
+                be.PRESS_KEY_CODE: lambda: self.press_keycode(operate),
+                be.SCREEN_SHOT: lambda: self.screen_shot(operate)
             }
             return elements[operate.get("operate_type")]()
         except IndexError:
@@ -316,7 +316,6 @@ class OperateElement:
             be.find_element_by_css_selector: lambda: self.driver.find_element_by_css_selector(mOperate['element_info']),
             be.find_element_by_class_name: lambda: self.driver.find_element_by_class_name(mOperate['element_info']),
             be.find_elements_by_id: lambda: self.driver.find_elements_by_id(mOperate['element_info'])
-
         }
         return elements[mOperate["find_type"]]()
 
@@ -335,9 +334,15 @@ class OperateElement:
         return {"result": True}
 
         # 截图
-    def screenShot(self, screen_save_path):
+    def screen_shot(self, mOperate):
+        print("==开始截图==") 
+        # self.elements_by(mOperate)[mOperate["index"]].click()
+        img_folder = os.path.abspath(os.path.join(os.path.dirname(__file__), "..","screenshots"))
+        if not os.path.exists(img_folder):
+          os.makedirs(img_folder)
+        screen_save_path = os.path.join(img_folder,mOperate["msg"])
+        print("截图路径==", screen_save_path)
 
-        print("==开始截图==" % elem)
         self.driver.get_screenshot_as_file(screen_save_path)
-        return screen_save_path
+        return  {"result": True, "text": "".join(screen_save_path)}
 

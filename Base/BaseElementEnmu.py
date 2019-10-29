@@ -22,7 +22,8 @@ class Element(object):
     PRESS_KEY_CODE = "press_keycode"
 
     GET_CONTENT_DESC = "get_content_desc"
-
+    SCREEN_SHOT = "screen_shot"
+    
     # 错误日志
     TIME_OUT = "timeout"
     NO_SUCH = "noSuch"
